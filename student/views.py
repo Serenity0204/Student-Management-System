@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
@@ -47,7 +47,7 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
-    return redirect('login')
+    return redirect('index')
 
 
 @login_required(login_url='login')
@@ -70,3 +70,25 @@ def add_student_view(request):
         form = AddStudentForm()
         context = {'form': form}
         return render(request, 'add_student.html', context)
+
+
+@login_required(login_url='login')
+def update_student_view(request, pk):
+    student = get_object_or_404(Student, pk=pk)
+    form = AddStudentForm(instance=student)
+    if request.method == 'POST':
+        form = AddStudentForm(request.POST, instance=student)
+        if form.is_valid():
+            form.save()
+            return redirect('student_list')
+    context = {'student': student, 'form': form}
+    return render(request, 'update_student.html', context)
+    
+
+@login_required(login_url='login')
+def delete_student_view(request, pk):
+    student = get_object_or_404(Student, pk=pk)
+    if request.method == 'POST':
+        student.delete()
+    return redirect('student_list')
+

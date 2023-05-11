@@ -15,7 +15,7 @@
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Student Management System</a>
+      <a class="navbar-brand" href="{% url 'index' %}">Student Management System</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -31,9 +31,7 @@
         <ul class="navbar-nav">
           {% if user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'student_list' %}"
-              >Student Management</a
-            >
+            <a class="nav-link" href="{% url 'student_list' %}">Student List</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'logout' %}">Logout</a>

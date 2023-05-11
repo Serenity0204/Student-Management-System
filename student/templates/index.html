@@ -1,4 +1,18 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
+    <div class="jumbotron text-center">
+        <h1>Welcome to Student Management System</h1>
+        <p>A reliable system to manage student records</p>
+        <img src="{% static 'student.png' %}" alt="student image">
+        {% if user.is_authenticated %}
+            <h3>Have a Nice Day!</h3>
+            <a class="btn btn-primary" data-inline="true" href="{% url 'logout' %}">Logout</a>
+        {% else %}
+            <h3>New User?</h3>
+            <a class="btn btn-primary" data-inline="true" href="{% url 'register' %}">Register</a>
+            <h3>Already Have an Account?</h3>
+            <a class="btn btn-primary" data-inline="true" href="{% url 'login' %}">Login</a>
+        {% endif %}
+    </div>
 {% endblock %}

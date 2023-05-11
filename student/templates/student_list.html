@@ -21,10 +21,10 @@
           <td>{{ student.email }}</td>
           <td>{{ student.age }}</td>      
           <td>
-            <a href="#" class="btn btn-sm btn-primary">Edit</a>
-            <form method="POST" action="#" class="d-inline">
+            <a href="{% url 'update_student' student.id %}" class="btn btn-sm btn-primary">Edit</a>
+            <form method="POST" action="{% url 'delete_student' student.id %}" class="d-inline">
               {% csrf_token %}
-              <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+              <button type="submit" onclick="return confirm('Are you sure to delete?')" class="btn btn-sm btn-danger">Delete</button>
             </form>
           </td>
         </tr>
