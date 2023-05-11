@@ -1,5 +1,5 @@
 
-# Project Name
+# Student Management System
 A student management system built in django and sqlite, it supports basic crud with login/out, and registration functionalities.
 The system can only be used by authenticated users.
 
